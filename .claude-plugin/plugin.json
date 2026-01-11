@@ -1,0 +1,9 @@
+{
+  "name": "og-image",
+  "version": "1.0.0",
+  "description": "Generate social media preview images (Open Graph) with full meta tag configuration",
+  "author": {
+    "name": "Steve Smith",
+    "email": "stevy@hey.com"
+  }
+}
