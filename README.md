@@ -4,41 +4,17 @@ Generate social media preview images (Open Graph) and configure all meta tags fo
 
 ## Installation
 
-### Manual Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/stevysmith/og-image-skill.git ~/.claude/plugins/marketplaces/og-image-skill
+1. Add the marketplace:
+```
+/plugin marketplace add stevysmith/og-image-skill
 ```
 
-2. Add to your `~/.claude/plugins/installed_plugins.json`:
-```json
-{
-  "og-image@og-image-skill": [
-    {
-      "scope": "user",
-      "installPath": "~/.claude/plugins/marketplaces/og-image-skill/plugins/og-image",
-      "version": "1.0.0"
-    }
-  ]
-}
+2. Install the plugin:
+```
+/plugin install og-image@og-image-skill
 ```
 
-3. Enable in `~/.claude/settings.json`:
-```json
-{
-  "enabledPlugins": ["og-image@og-image-skill"]
-}
-```
-
-4. Restart Claude Code
-
-### Official Marketplace (Coming Soon)
-
-This skill is pending submission to the official Claude Code plugins marketplace. Once accepted:
-```
-/install og-image@claude-code-plugins
-```
+That's it. The `/og-image` skill is now available.
 
 ## What It Does
 
