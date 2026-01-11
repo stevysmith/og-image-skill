@@ -1,0 +1,23 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "og-image-skill",
+  "version": "1.0.0",
+  "description": "Generate professional social media preview images (Open Graph) with full meta tag configuration",
+  "owner": {
+    "name": "Steve Smith",
+    "email": "stevy@hey.com"
+  },
+  "plugins": [
+    {
+      "name": "og-image",
+      "description": "Generate social media preview images (Open Graph) and configure meta tags. Creates a screenshot-optimized page using the project's existing design system, captures it at 1200x630, and sets up all social sharing meta tags.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Steve Smith",
+        "email": "stevy@hey.com"
+      },
+      "source": "./plugins/og-image",
+      "category": "productivity"
+    }
+  ]
+}
