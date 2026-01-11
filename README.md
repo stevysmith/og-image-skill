@@ -1,6 +1,57 @@
-# OG Image Plugin
+# OG Image Skill
 
 Generate social media preview images (Open Graph) and configure all meta tags for optimal sharing on Twitter/X, LinkedIn, Facebook, Slack, Discord, and more.
+
+## Installation
+
+### Option 1: Add as a Marketplace (Recommended)
+
+Add the marketplace to your Claude Code configuration:
+
+```bash
+# Add to known marketplaces
+echo '{
+  "og-image-skill": {
+    "url": "https://github.com/stevysmith/og-image-skill",
+    "name": "OG Image Skill",
+    "description": "Generate social media preview images"
+  }
+}' >> ~/.claude/plugins/known_marketplaces.json
+```
+
+Then install via Claude Code:
+```
+/install og-image@og-image-skill
+```
+
+### Option 2: Manual Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/stevysmith/og-image-skill.git ~/.claude/plugins/marketplaces/og-image-skill
+```
+
+2. Add to your `~/.claude/plugins/installed_plugins.json`:
+```json
+{
+  "og-image@og-image-skill": [
+    {
+      "scope": "user",
+      "installPath": "~/.claude/plugins/marketplaces/og-image-skill/plugins/og-image",
+      "version": "1.0.0"
+    }
+  ]
+}
+```
+
+3. Enable in `~/.claude/settings.json`:
+```json
+{
+  "enabledPlugins": ["og-image@og-image-skill"]
+}
+```
+
+4. Restart Claude Code
 
 ## What It Does
 
@@ -21,10 +72,21 @@ Creates a dedicated `/og-image` route in your project that renders a 1200x630 pr
 
 Run this command from within your web project directory. The skill will analyze your codebase and generate a contextually appropriate OG image.
 
-## Requirements
+## Prerequisites
 
-- Playwright MCP server (for screenshots)
-- A web project with a dev server (Next.js, Vite, Astro, etc.)
+Before using this skill, ensure you have:
+
+1. **Playwright MCP Server** - Required for taking screenshots
+   ```
+   /install playwright@claude-plugins-official
+   ```
+
+2. **A web project** with a dev server running (Next.js, Vite, Astro, etc.)
+
+3. **Dev server running** - Start your dev server before invoking the skill:
+   ```bash
+   npm run dev  # or yarn dev, pnpm dev, etc.
+   ```
 
 ## Supported Frameworks
 
