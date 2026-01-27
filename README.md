@@ -84,23 +84,25 @@ After generating, use these tools to refresh social platform caches:
 
 ## Example Output
 
-The skill generates an OG image that matches your project's design system:
+The skill generates OG images that match your project's design system. Here are examples of what it can produce:
 
-- Uses your existing color palette and typography
-- Includes your logo/branding
-- Displays your product name and tagline
-- Sized at exactly 1200x630 for optimal social previews
+### Cosmic Luxury
+Dark gradients, aurora colors, geometric orbs
+![Cosmic](./examples/og-cosmic.png)
 
-**See example templates in [`/examples`](./examples/):**
+### Editorial
+Light, refined, magazine-inspired with abstract shapes
+![Editorial](./examples/og-editorial.png)
 
-| File | Aesthetic | Style |
-|------|-----------|-------|
-| `sample-og-page.html` | Cosmic Luxury | Dark gradients, aurora colors, geometric orbs |
-| `sample-og-minimal.html` | Editorial | Light, refined, magazine-inspired with abstract shapes |
-| `sample-og-brutalist.html` | Neo-Brutalist | Bold typography, harsh colors, raw geometric blocks |
-| `sample-og-ethereal.html` | Ethereal | Mesh gradients, glassmorphism, animated particles |
+### Neo-Brutalist
+Bold typography, harsh colors, raw geometric blocks
+![Brutalist](./examples/og-brutalist.png)
 
-Open these HTML files in a browser to preview. The skill adapts its output to match your project's existing design language.
+### Ethereal
+Mesh gradients, glassmorphism, floating particles
+![Ethereal](./examples/og-ethereal.png)
+
+The skill analyzes your codebase and adapts its output to match your existing design language.
 
 ## Troubleshooting
 
