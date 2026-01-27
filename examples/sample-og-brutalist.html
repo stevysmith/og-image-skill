@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, height=630">
+  <title>OG Image Example - Neo-Brutalist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f0efe9;
+      --black: #0a0a0a;
+      --accent-1: #ff3d00;
+      --accent-2: #0055ff;
+      --accent-3: #aaff00;
+      --text-muted: #666;
+    }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: 'Space Mono', monospace;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .og-container {
+      width: 1200px;
+      height: 630px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Chaotic grid background */
+    .grid-chaos {
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 79px,
+          rgba(0,0,0,0.03) 79px,
+          rgba(0,0,0,0.03) 80px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 79px,
+          rgba(0,0,0,0.03) 79px,
+          rgba(0,0,0,0.03) 80px
+        );
+    }
+
+    /* Diagonal slash */
+    .slash {
+      position: absolute;
+      width: 800px;
+      height: 200%;
+      background: var(--accent-1);
+      top: -50%;
+      right: 200px;
+      transform: rotate(-15deg);
+      z-index: 1;
+    }
+
+    .slash::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--accent-1),
+        var(--accent-1) 20px,
+        transparent 20px,
+        transparent 40px
+      );
+      opacity: 0.3;
+    }
+
+    /* Blue block */
+    .block-blue {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: var(--accent-2);
+      bottom: -60px;
+      right: 100px;
+      z-index: 2;
+      transform: rotate(5deg);
+      box-shadow: 12px 12px 0 var(--black);
+    }
+
+    /* Green accent */
+    .block-green {
+      position: absolute;
+      width: 150px;
+      height: 80px;
+      background: var(--accent-3);
+      top: 80px;
+      right: 350px;
+      z-index: 3;
+      transform: rotate(-3deg);
+    }
+
+    /* Main content */
+    .content {
+      position: relative;
+      z-index: 10;
+      padding: 60px 70px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Top bar */
+    .top-bar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .logo-brutal {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-box {
+      width: 48px;
+      height: 48px;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-box span {
+      color: var(--accent-3);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+    }
+
+    .logo-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .version-tag {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--black);
+      background: var(--accent-3);
+      padding: 6px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Giant headline */
+    .headline-container {
+      position: relative;
+      margin-top: -20px;
+    }
+
+    .headline {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 180px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .headline-row {
+      display: block;
+      position: relative;
+    }
+
+    .headline-row:nth-child(2) {
+      margin-left: 80px;
+      color: transparent;
+      -webkit-text-stroke: 3px var(--black);
+    }
+
+    /* Strikethrough decoration */
+    .strike {
+      position: absolute;
+      height: 8px;
+      background: var(--accent-1);
+      top: 50%;
+      left: 0;
+      right: -20px;
+      transform: translateY(-50%) rotate(-1deg);
+    }
+
+    /* Offset text effect */
+    .headline-shadow {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      color: var(--accent-2);
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    /* Bottom section */
+    .bottom-bar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 350px;
+      line-height: 1.6;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .tagline strong {
+      color: var(--black);
+      font-weight: 700;
+    }
+
+    .coords {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .coords span {
+      display: block;
+    }
+
+    /* Decorative elements */
+    .corner-box {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--black);
+    }
+
+    .corner-box.tl {
+      top: 30px;
+      left: 30px;
+    }
+
+    .corner-box.br {
+      bottom: 30px;
+      right: 30px;
+      background: var(--black);
+    }
+
+    /* Asterisk decoration */
+    .asterisk {
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 200px;
+      color: var(--black);
+      opacity: 0.06;
+      top: 150px;
+      right: 500px;
+      z-index: 0;
+    }
+
+    /* Scan lines effect */
+    .scanlines {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.015) 2px,
+        rgba(0,0,0,0.015) 4px
+      );
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    /* Marker annotation */
+    .annotation {
+      position: absolute;
+      top: 180px;
+      right: 620px;
+      z-index: 20;
+    }
+
+    .annotation-line {
+      width: 60px;
+      height: 2px;
+      background: var(--accent-1);
+      transform: rotate(-45deg);
+      transform-origin: left;
+    }
+
+    .annotation-text {
+      font-size: 10px;
+      color: var(--accent-1);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 8px;
+      margin-left: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="og-container">
+    <!-- Background elements -->
+    <div class="grid-chaos"></div>
+    <div class="slash"></div>
+    <div class="block-blue"></div>
+    <div class="block-green"></div>
+    <div class="asterisk">*</div>
+    <div class="scanlines"></div>
+
+    <!-- Corner decorations -->
+    <div class="corner-box tl"></div>
+    <div class="corner-box br"></div>
+
+    <!-- Annotation -->
+    <div class="annotation">
+      <div class="annotation-line"></div>
+      <div class="annotation-text">New 2026</div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="top-bar">
+        <div class="logo-brutal">
+          <div class="logo-box"><span>B</span></div>
+          <span class="logo-text">Brutalist<br>Systems</span>
+        </div>
+        <div class="version-tag">V 3.0.0</div>
+      </div>
+
+      <div class="headline-container">
+        <h1 class="headline">
+          <span class="headline-shadow" aria-hidden="true">
+            <span class="headline-row">Break</span>
+            <span class="headline-row">Rules</span>
+          </span>
+          <span class="headline-row">Break</span>
+          <span class="headline-row">Rules<span class="strike"></span></span>
+        </h1>
+      </div>
+
+      <div class="bottom-bar">
+        <p class="tagline">
+          <strong>Design systems</strong> for teams who refuse to blend in. Raw. Intentional. Unforgettable.
+        </p>
+        <div class="coords">
+          <span>brutalist.systems</span>
+          <span>52.5200° N, 13.4050° E</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

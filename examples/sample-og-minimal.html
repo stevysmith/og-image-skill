@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, height=630">
+  <title>OG Image Example - Editorial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #faf9f7;
+      --text-primary: #1a1a1a;
+      --text-secondary: #6b6b6b;
+      --accent: #c44d34;
+      --accent-soft: #f4e4df;
+      --border: #e5e3df;
+    }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: 'Instrument Sans', -apple-system, sans-serif;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .og-container {
+      width: 1200px;
+      height: 630px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Left side - content */
+    .content-side {
+      padding: 70px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    /* Decorative border */
+    .content-side::after {
+      content: '';
+      position: absolute;
+      top: 40px;
+      bottom: 40px;
+      right: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    /* Top section with logo */
+    .top-section {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .logo-badge {
+      padding: 4px 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 4px;
+    }
+
+    /* Main headline */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 40px;
+    }
+
+    .headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 58px;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+    }
+
+    .headline em {
+      font-style: italic;
+    }
+
+    .description {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 420px;
+    }
+
+    /* Bottom section */
+    .bottom-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .domain-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    .cta-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .cta-hint svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Right side - visual */
+    .visual-side {
+      position: relative;
+      background: linear-gradient(135deg, #f5f3f0 0%, #ebe8e4 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Abstract shapes composition */
+    .shapes-container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .shape-1 {
+      width: 280px;
+      height: 280px;
+      background: var(--accent);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .shape-2 {
+      width: 180px;
+      height: 180px;
+      background: var(--bg);
+      top: 20px;
+      right: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+
+    .shape-3 {
+      width: 120px;
+      height: 120px;
+      background: var(--text-primary);
+      bottom: 40px;
+      left: 30px;
+    }
+
+    .shape-4 {
+      width: 60px;
+      height: 60px;
+      background: var(--accent-soft);
+      top: 80px;
+      left: 80px;
+    }
+
+    /* Lines */
+    .line {
+      position: absolute;
+      background: var(--border);
+    }
+
+    .line-h {
+      width: 100%;
+      height: 1px;
+      top: 50%;
+      left: 0;
+    }
+
+    .line-v {
+      width: 1px;
+      height: 100%;
+      top: 0;
+      left: 50%;
+    }
+
+    /* Corner markers */
+    .corner-marker {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .corner-marker.tl {
+      top: 40px;
+      left: 40px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .corner-marker.br {
+      bottom: 40px;
+      right: 40px;
+      border-left: none;
+      border-top: none;
+    }
+
+    /* Texture overlay */
+    .texture {
+      position: absolute;
+      inset: 0;
+      opacity: 0.5;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    /* Issue number decoration */
+    .issue-number {
+      position: absolute;
+      bottom: 50px;
+      right: 50px;
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 120px;
+      font-weight: 400;
+      color: rgba(0,0,0,0.04);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="og-container">
+    <!-- Left content -->
+    <div class="content-side">
+      <div class="top-section">
+        <span class="logo-wordmark">Acme Studio</span>
+        <span class="logo-badge">2026</span>
+      </div>
+
+      <div class="main-content">
+        <h1 class="headline">Design tools for<br><em>thoughtful</em> teams</h1>
+        <p class="description">Where craft meets clarity. Build interfaces that respect your users and reflect your vision.</p>
+      </div>
+
+      <div class="bottom-section">
+        <span class="domain-text">acmestudio.design</span>
+        <span class="cta-hint">
+          Learn more
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Right visual -->
+    <div class="visual-side">
+      <div class="texture"></div>
+
+      <div class="line line-h"></div>
+      <div class="line line-v"></div>
+
+      <div class="corner-marker tl"></div>
+      <div class="corner-marker br"></div>
+
+      <div class="shapes-container">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+      </div>
+
+      <div class="issue-number">01</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, height=630">
+  <title>OG Image Example</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-deep: #08090d;
+      --bg-mid: #0f1219;
+      --accent-aurora-1: #7c3aed;
+      --accent-aurora-2: #06b6d4;
+      --accent-aurora-3: #f472b6;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+    }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-deep);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .og-container {
+      width: 1200px;
+      height: 630px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 80px;
+    }
+
+    /* Deep space background with multiple gradient layers */
+    .bg-base {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 80% at 20% 100%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 100% at 80% 0%, rgba(6, 182, 212, 0.12) 0%, transparent 40%),
+        radial-gradient(ellipse 80% 60% at 60% 80%, rgba(244, 114, 182, 0.08) 0%, transparent 40%),
+        linear-gradient(165deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+    }
+
+    /* Subtle noise texture overlay */
+    .noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.4;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    /* Floating orbs for depth */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+    }
+
+    .orb-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent-aurora-1);
+      top: -80px;
+      right: 100px;
+      opacity: 0.25;
+    }
+
+    .orb-2 {
+      width: 200px;
+      height: 200px;
+      background: var(--accent-aurora-2);
+      bottom: -40px;
+      left: 200px;
+      opacity: 0.2;
+    }
+
+    .orb-3 {
+      width: 150px;
+      height: 150px;
+      background: var(--accent-aurora-3);
+      top: 50%;
+      right: 300px;
+      opacity: 0.15;
+    }
+
+    /* Grid lines for structure */
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Diagonal accent line */
+    .accent-line {
+      position: absolute;
+      width: 400px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-aurora-2), transparent);
+      top: 180px;
+      left: -50px;
+      transform: rotate(-25deg);
+      opacity: 0.4;
+    }
+
+    .accent-line-2 {
+      position: absolute;
+      width: 300px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-aurora-1), transparent);
+      bottom: 120px;
+      right: -30px;
+      transform: rotate(-25deg);
+      opacity: 0.3;
+    }
+
+    /* Content area */
+    .content {
+      position: relative;
+      z-index: 10;
+      max-width: 650px;
+    }
+
+    /* Logo mark */
+    .logo-mark {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--accent-aurora-1), var(--accent-aurora-2));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+      position: relative;
+      box-shadow:
+        0 0 40px rgba(124, 58, 237, 0.3),
+        0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo-mark::before {
+      content: '';
+      position: absolute;
+      inset: 1px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+      border-radius: 13px;
+    }
+
+    .logo-mark svg {
+      width: 28px;
+      height: 28px;
+      color: white;
+    }
+
+    /* Typography */
+    .headline {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-size: 76px;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .headline em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--accent-aurora-2), var(--accent-aurora-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      max-width: 480px;
+    }
+
+    /* Domain badge */
+    .domain {
+      margin-top: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .domain-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent-aurora-2);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-aurora-2);
+    }
+
+    /* Right side visual */
+    .visual {
+      position: relative;
+      z-index: 10;
+      width: 380px;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Abstract geometric composition */
+    .geo-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+    }
+
+    .geo-ring {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .geo-ring-1 {
+      inset: 0;
+    }
+
+    .geo-ring-2 {
+      inset: 30px;
+      border-color: rgba(124, 58, 237, 0.3);
+    }
+
+    .geo-ring-3 {
+      inset: 60px;
+      border-color: rgba(6, 182, 212, 0.25);
+    }
+
+    /* Central element */
+    .geo-center {
+      position: absolute;
+      inset: 90px;
+      background: linear-gradient(135deg, var(--accent-aurora-1), var(--accent-aurora-2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 80px rgba(124, 58, 237, 0.4),
+        0 0 40px rgba(6, 182, 212, 0.3),
+        inset 0 -10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .geo-center::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.25), transparent 60%);
+    }
+
+    /* Orbiting dots */
+    .orbit-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-aurora-2);
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--accent-aurora-2);
+    }
+
+    .orbit-dot-1 {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .orbit-dot-2 {
+      bottom: 30px;
+      right: 10px;
+      background: var(--accent-aurora-3);
+      box-shadow: 0 0 15px var(--accent-aurora-3);
+      width: 6px;
+      height: 6px;
+    }
+
+    .orbit-dot-3 {
+      top: 60px;
+      left: 5px;
+      background: var(--accent-aurora-1);
+      box-shadow: 0 0 15px var(--accent-aurora-1);
+      width: 10px;
+      height: 10px;
+    }
+
+    /* Floating elements around visual */
+    .float-element {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(4px);
+    }
+
+    .float-1 {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      top: 20px;
+      right: 0;
+      transform: rotate(15deg);
+    }
+
+    .float-2 {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      bottom: 40px;
+      left: 20px;
+      transform: rotate(-10deg);
+    }
+
+    /* Corner accent */
+    .corner-accent {
+      position: absolute;
+      bottom: 40px;
+      right: 60px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .corner-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .corner-text {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="og-container">
+    <!-- Background layers -->
+    <div class="bg-base"></div>
+    <div class="noise"></div>
+    <div class="grid-lines"></div>
+
+    <!-- Floating orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Accent lines -->
+    <div class="accent-line"></div>
+    <div class="accent-line-2"></div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
+          <line x1="12" y1="22" x2="12" y2="15.5"/>
+          <polyline points="22 8.5 12 15.5 2 8.5"/>
+        </svg>
+      </div>
+
+      <h1 class="headline">Build something<br><em>remarkable</em></h1>
+
+      <p class="tagline">The modern platform for teams who ship fast and think different. No compromises.</p>
+
+      <div class="domain">
+        <span class="domain-dot"></span>
+        yourproduct.com
+      </div>
+    </div>
+
+    <!-- Right side visual -->
+    <div class="visual">
+      <div class="float-element float-1"></div>
+      <div class="float-element float-2"></div>
+
+      <div class="geo-container">
+        <div class="geo-ring geo-ring-1"></div>
+        <div class="geo-ring geo-ring-2"></div>
+        <div class="geo-ring geo-ring-3"></div>
+        <div class="geo-center"></div>
+
+        <div class="orbit-dot orbit-dot-1"></div>
+        <div class="orbit-dot orbit-dot-2"></div>
+        <div class="orbit-dot orbit-dot-3"></div>
+      </div>
+    </div>
+
+    <!-- Corner accent -->
+    <div class="corner-accent">
+      <div class="corner-line"></div>
+      <span class="corner-text">Preview</span>
+    </div>
+  </div>
+</body>
+</html>

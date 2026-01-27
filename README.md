@@ -4,17 +4,20 @@ Generate social media preview images (Open Graph) and configure all meta tags fo
 
 ## Installation
 
-1. Add the marketplace:
-```
-/plugin marketplace add stevysmith/og-image-skill
+### Via skills.sh (recommended)
+
+```bash
+npx skills add stevysmith/og-image-skill
 ```
 
-2. Install the plugin:
+### Via Claude Code plugin commands
+
 ```
+/plugin marketplace add stevysmith/og-image-skill
 /plugin install og-image@og-image-skill
 ```
 
-That's it. The `/og-image` skill is now available.
+After installation, the `/og-image` skill is available in Claude Code.
 
 ## What It Does
 
@@ -78,3 +81,40 @@ After generating, use these tools to refresh social platform caches:
 - Facebook/LinkedIn: https://developers.facebook.com/tools/debug/
 - Twitter/X: https://cards-dev.twitter.com/validator
 - LinkedIn: https://www.linkedin.com/post-inspector/
+
+## Example Output
+
+The skill generates an OG image that matches your project's design system:
+
+- Uses your existing color palette and typography
+- Includes your logo/branding
+- Displays your product name and tagline
+- Sized at exactly 1200x630 for optimal social previews
+
+**See example templates in [`/examples`](./examples/):**
+
+| File | Aesthetic | Style |
+|------|-----------|-------|
+| `sample-og-page.html` | Cosmic Luxury | Dark gradients, aurora colors, geometric orbs |
+| `sample-og-minimal.html` | Editorial | Light, refined, magazine-inspired with abstract shapes |
+| `sample-og-brutalist.html` | Neo-Brutalist | Bold typography, harsh colors, raw geometric blocks |
+| `sample-og-ethereal.html` | Ethereal | Mesh gradients, glassmorphism, animated particles |
+
+Open these HTML files in a browser to preview. The skill adapts its output to match your project's existing design language.
+
+## Troubleshooting
+
+**"Playwright not found"** - Install the Playwright MCP server first:
+```
+/install playwright@claude-plugins-official
+```
+
+**Screenshot is blank** - Make sure your dev server is running before invoking the skill.
+
+**Meta tags not updating** - The skill modifies your layout file. Check that you have write access and no syntax errors were introduced.
+
+## Learn More
+
+- [skills.sh](https://skills.sh) - Discover more Claude Code skills
+- [Open Graph Protocol](https://ogp.me/) - OG specification
+- [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards) - Twitter card documentation

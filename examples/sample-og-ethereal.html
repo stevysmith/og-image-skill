@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, height=630">
+  <title>OG Image Example - Ethereal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Sora:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0c0a14;
+      --text-light: #faf8ff;
+      --text-muted: rgba(250, 248, 255, 0.5);
+      --glow-pink: #ff6bce;
+      --glow-blue: #6bb3ff;
+      --glow-purple: #a855f7;
+      --glow-peach: #ffb86b;
+    }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .og-container {
+      width: 1200px;
+      height: 630px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 0 100px;
+    }
+
+    /* Mesh gradient background */
+    .mesh-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 90%, rgba(255, 107, 206, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 80% at 90% 20%, rgba(107, 179, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 50% at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 100% at 70% 80%, rgba(255, 184, 107, 0.1) 0%, transparent 40%),
+        linear-gradient(180deg, #0c0a14 0%, #1a1525 100%);
+    }
+
+    /* Animated aurora effect */
+    .aurora {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background:
+        conic-gradient(
+          from 180deg at 50% 50%,
+          transparent 0deg,
+          rgba(255, 107, 206, 0.08) 60deg,
+          transparent 120deg,
+          rgba(107, 179, 255, 0.06) 180deg,
+          transparent 240deg,
+          rgba(168, 85, 247, 0.08) 300deg,
+          transparent 360deg
+        );
+      animation: aurora-spin 30s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes aurora-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, var(--glow-pink), var(--glow-purple));
+      top: -100px;
+      left: -100px;
+      opacity: 0.4;
+      animation: float-1 8s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 350px;
+      height: 350px;
+      background: linear-gradient(135deg, var(--glow-blue), var(--glow-purple));
+      bottom: -80px;
+      right: 100px;
+      opacity: 0.35;
+      animation: float-2 10s ease-in-out infinite;
+    }
+
+    .orb-3 {
+      width: 200px;
+      height: 200px;
+      background: var(--glow-peach);
+      top: 50%;
+      right: 300px;
+      opacity: 0.2;
+      animation: float-3 6s ease-in-out infinite;
+    }
+
+    @keyframes float-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, 20px) scale(1.05); }
+    }
+
+    @keyframes float-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-20px, -30px) scale(1.08); }
+    }
+
+    @keyframes float-3 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(15px, -15px); }
+    }
+
+    /* Glass panel */
+    .glass-panel {
+      position: absolute;
+      width: 500px;
+      height: 350px;
+      right: 80px;
+      top: 50%;
+      transform: translateY(-50%) perspective(1000px) rotateY(-8deg) rotateX(2deg);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.02) 100%
+      );
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      box-shadow:
+        0 32px 64px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .glass-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        transparent 40%
+      );
+      border-radius: 24px;
+    }
+
+    /* Glass panel content */
+    .glass-content {
+      position: relative;
+      padding: 40px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .glass-header {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 30px;
+    }
+
+    .glass-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .glass-dot:nth-child(1) { background: rgba(255, 107, 206, 0.6); }
+    .glass-dot:nth-child(2) { background: rgba(168, 85, 247, 0.6); }
+    .glass-dot:nth-child(3) { background: rgba(107, 179, 255, 0.6); }
+
+    .glass-lines {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .glass-line {
+      height: 10px;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.05)
+      );
+      border-radius: 5px;
+    }
+
+    .glass-line:nth-child(1) { width: 80%; }
+    .glass-line:nth-child(2) { width: 60%; }
+    .glass-line:nth-child(3) { width: 90%; }
+    .glass-line:nth-child(4) { width: 45%; }
+    .glass-line:nth-child(5) { width: 70%; }
+
+    .glass-shimmer {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      top: 0;
+      left: -100%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.03) 50%,
+        transparent 100%
+      );
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(50%); }
+    }
+
+    /* Main content */
+    .content {
+      position: relative;
+      z-index: 10;
+      max-width: 520px;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 50px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      position: relative;
+    }
+
+    .logo-ring {
+      position: absolute;
+      inset: 0;
+      border: 2px solid transparent;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--glow-pink), var(--glow-blue)) border-box;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    .logo-core {
+      position: absolute;
+      inset: 10px;
+      background: linear-gradient(135deg, var(--glow-pink), var(--glow-purple));
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 107, 206, 0.4);
+    }
+
+    .logo-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 0.08em;
+    }
+
+    /* Headline */
+    .headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 68px;
+      font-weight: 400;
+      color: var(--text-light);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
+    }
+
+    .headline em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--glow-pink), var(--glow-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .headline .line-2 {
+      display: block;
+      margin-left: 40px;
+    }
+
+    /* Description */
+    .description {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 400px;
+      margin-bottom: 40px;
+    }
+
+    /* CTA area */
+    .cta-area {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--glow-pink), var(--glow-purple));
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+      letter-spacing: 0.02em;
+      box-shadow:
+        0 8px 32px rgba(255, 107, 206, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .domain {
+      font-size: 14px;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    /* Decorative particles */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+
+    .particle-1 { top: 15%; left: 20%; animation: twinkle 3s ease-in-out infinite; }
+    .particle-2 { top: 25%; right: 25%; animation: twinkle 4s ease-in-out infinite 1s; }
+    .particle-3 { bottom: 30%; left: 35%; animation: twinkle 3.5s ease-in-out infinite 0.5s; }
+    .particle-4 { top: 40%; left: 55%; animation: twinkle 4.5s ease-in-out infinite 2s; width: 3px; height: 3px; }
+    .particle-5 { bottom: 20%; right: 40%; animation: twinkle 3s ease-in-out infinite 1.5s; width: 5px; height: 5px; }
+    .particle-6 { top: 60%; left: 10%; animation: twinkle 5s ease-in-out infinite 0.8s; width: 2px; height: 2px; }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.5); }
+    }
+
+    /* Noise overlay */
+    .noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    /* Vignette */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(12, 10, 20, 0.6) 100%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="og-container">
+    <!-- Background layers -->
+    <div class="mesh-bg"></div>
+    <div class="aurora"></div>
+
+    <!-- Floating orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Particles -->
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+    <div class="particle particle-5"></div>
+    <div class="particle particle-6"></div>
+
+    <!-- Glass panel -->
+    <div class="glass-panel">
+      <div class="glass-shimmer"></div>
+      <div class="glass-content">
+        <div class="glass-header">
+          <div class="glass-dot"></div>
+          <div class="glass-dot"></div>
+          <div class="glass-dot"></div>
+        </div>
+        <div class="glass-lines">
+          <div class="glass-line"></div>
+          <div class="glass-line"></div>
+          <div class="glass-line"></div>
+          <div class="glass-line"></div>
+          <div class="glass-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="logo">
+        <div class="logo-icon">
+          <div class="logo-ring"></div>
+          <div class="logo-core"></div>
+        </div>
+        <span class="logo-name">LUMINA</span>
+      </div>
+
+      <h1 class="headline">
+        Where ideas
+        <span class="line-2">become <em>reality</em></span>
+      </h1>
+
+      <p class="description">
+        The creative platform that transforms how teams imagine, design, and build together.
+      </p>
+
+      <div class="cta-area">
+        <div class="cta-button">
+          Start creating
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+        <span class="domain">lumina.design</span>
+      </div>
+    </div>
+
+    <!-- Overlays -->
+    <div class="noise"></div>
+    <div class="vignette"></div>
+  </div>
+</body>
+</html>
